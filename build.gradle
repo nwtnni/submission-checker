@@ -12,7 +12,7 @@ apply plugin: 'java'
 apply plugin: 'eclipse'
 
 task stage(dependsOn: ['build', 'clean'])
-buld.mustRunAfter clean
+build.mustRunAfter clean
 
 // In this section you declare where to find the dependencies of your project
 repositories {
