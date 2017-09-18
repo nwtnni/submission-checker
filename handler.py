@@ -1,13 +1,14 @@
 from http.server import BaseHTTPRequestHandler
+import smtplib
 
 class RequestHandler(BaseHTTPRequestHandler):
 
-    def do_GET(self):
+    def do_POST(self):
 
-        self.send_response(200)
-        self.send_header('Content-type', 'text/html')
-        self.end_headers()
+        server = smtplib.SMTP('smtp.gmail.com', 587)
+        server.starttls()
+        server.login("cs2112autograder@gmail.com", "")
 
-        message = "Hello World!"
-        self.wfile.write(bytes(message, "utf8"))
-        return
+        msg = "Testing autograder"
+        server.sendmail("cs2112autograder@gmail.com", "", msg)
+        server.quit()
