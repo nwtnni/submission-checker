@@ -1,5 +1,6 @@
 from flask import Flask, request
 import os
+import shutil
 
 app = Flask("java-autograder")
 
@@ -18,6 +19,13 @@ def upload():
     os.mkdir(folder_name) 
 
     submission.save(folder_name + "/" + file_name)
+
+    print(os.listdir(os.getcwd()))
+    print(os.listdir(folder_name))
+
+    shutil.rmtree(folder_name)
+
+    print(folder_name + "exists: " + str(os.path.exists(os.path.join(os.getcwd(), folder_name))))
 
 if __name__ == "__main__":
     port = int(os.environ.get('PORT', 5000))
