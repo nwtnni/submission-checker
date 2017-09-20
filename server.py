@@ -1,12 +1,20 @@
-#!/usr/bin/env python
+from flask import Flask, request
+import os
 
-from http.server import HTTPServer
-from handler import RequestHandler
+app = Flask(__name__)
 
-if __name__ == "__main__":
+@app.route('/', methods=['POST'])
+def upload():
 
-    address = ("127.0.0.1", 8080)
-    httpd = HTTPServer(address, RequestHandler)
+    net_ids = request.form['netids'].split('')
+    print(net_ids)
+    folder_name = request.form['group_id']
+    print(folder_name)
+    file_name = request.form['file_name_0']
+    print(file_name)
+    submission = request.files[file_name] 
+    
+    folder_name = os.path.join(os.getcwd(), folder_name)
+    os.mkdir(folder_name) 
 
-    print("Starting server at " + address[0] + ":" + str(address[1]))
-    httpd.serve_forever()
+    submission.save(folder_name + "/" + file_name)
