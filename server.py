@@ -1,7 +1,7 @@
 from flask import Flask, request
 import os
 
-app = Flask(__name__)
+app = Flask("java-autograder")
 
 @app.route('/', methods=['POST'])
 def upload():
@@ -18,3 +18,7 @@ def upload():
     os.mkdir(folder_name) 
 
     submission.save(folder_name + "/" + file_name)
+
+if __name__ == "__main__":
+    port = int(os.eniron.get('PORT', 5000))
+    app.run(host='0.0.0.0', port=port)
