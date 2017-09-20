@@ -6,7 +6,7 @@ app = Flask("java-autograder")
 @app.route('/', methods=['POST'])
 def upload():
 
-    net_ids = request.form['netids'].split('')
+    net_ids = request.form['netids'].split('_')
     print(net_ids)
     folder_name = request.form['group_id']
     print(folder_name)
