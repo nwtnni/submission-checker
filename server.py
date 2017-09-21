@@ -14,32 +14,22 @@ def upload():
     folder_name = request.form['group_id']
     file_name = request.form['file_name_0']
     assignment = request.form['assignment_name']
-    print(assignment)
     submission = request.files[file_name] 
     
     # Create temporary directory and save submission
     folder_name = path(folder_name)
     mkdir(folder_name)
-
     file_name = add_ext(file_name, ".zip")
     submission.save(file_name)
-
-    print("File name: " + file_name)
-
     extract(file_name, folder_name)
 
-    print(listdir(folder_name))
-
-    print("Initializing checker...")
+    # Check submission
     checker = Checker(assignment, folder_name)
-
-    print("Done initializing. Starting to check...")
     print(checker.check())
 
+    # Clean up
     rmdir(folder_name)
-
     return make_response("Success")
-
 
 if __name__ == "__main__":
     port = int(os.environ.get('PORT', 5000))

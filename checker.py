@@ -8,10 +8,6 @@ class Checker:
     def __init__(self, assignment, root):
         with open(join(Checker._REQUIRE_DIR, add_ext(assignment, ".txt")), "r") as f:
             self.required = [to_path(line, root).strip() for line in f]
-
-            for req in self.required:
-                print(req)
-
             self.root = root
             self.log = []
 
@@ -25,7 +21,7 @@ class Checker:
             for name in files + dirs:
                 name = join(root, name)
                 which = "directory" if is_dir(name) else "file"
-                if name not in self.required:
+                if name not in self.required and not name.endswith(".java"):
                     self.log.append("Found extra " + which + ": " + name)
 
     def check(self):
@@ -35,5 +31,5 @@ class Checker:
         if len(self.log) == 0:
             return "Your submission looks good to go!\n"
         else:
-            err = reduce(lambda a, b: a + b + "\n", self.log)
+            err = reduce(lambda a, b: a + "\n" + b, self.log) + "\n"
             return "Oops! Please fix the following errors and resubmit.\n" + err
