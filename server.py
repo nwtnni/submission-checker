@@ -24,6 +24,7 @@ def upload():
     print("File namee: " + file_name)
 
     submission.save(file_name)
+    extract(file_name)
 
     print("Initializing checker...")
     checker = Checker(assignment, folder_name)
@@ -31,7 +32,7 @@ def upload():
     print("Done initializing. Starting to check...")
     print(checker.check())
 
-    rm(folder_name)
+    rmdir(folder_name)
 
 
 if __name__ == "__main__":
