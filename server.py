@@ -1,5 +1,6 @@
 from flask import Flask, request
 from util import *
+from checker import Checker
 
 app = Flask("java-autograder")
 
@@ -19,9 +20,15 @@ def upload():
     mkdir(folder_name)
 
     file_name = add_ext(folder_name + "/" + file_name, ".zip")
+
+    print("File namee: " file_name)
+
     submission.save(file_name)
 
+    print("Initializing checker...")
     checker = Checker(assignment, folder_name)
+
+    print("Done initializing. Starting to check...")
     print(checker.check())
 
     rm(folder_name)
