@@ -8,15 +8,19 @@ class Checker:
     def __init__(self, assignment, root):
         with open(join(Checker._REQUIRE_DIR, add_ext(assignment, ".txt")), "r") as f:
             self.required = [to_path(line, root) for line in f]
+
+            for req in self.required:
+                print(req)
+
             self.root = root
             self.log = []
 
-    def _check_sufficient(self):
+    def check_sufficient(self):
         for req in self.required:
             if not exists(req):
                 self.log.append("Could not find file or directory: " + req) 
 
-    def _check_necessary(self):
+    def check_necessary(self):
         for root, dirs, files in walk(self.root):
             for name in files + dirs:
                 name = join(root, name)
@@ -25,8 +29,8 @@ class Checker:
                     log.append("Found extra " + which + ": " + name)
 
     def check(self):
-        _check_sufficient()
-        _check_necessary()
+        check_sufficient()
+        check_necessary()
         
         if len(self.log) == 0:
             return "Your submission looks good to go!\n"
