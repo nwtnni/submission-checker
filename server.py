@@ -1,6 +1,7 @@
 from flask import Flask, request, make_response
 from util import *
 from checker import Checker
+from mailer import Mailer
 
 from os import listdir
 
@@ -35,8 +36,8 @@ def upload():
         mailer.send(email, assignment + " Feedback", body)
 
     # Clean up
-    rmdir(folder_name)
     mailer.quit()
+    rmdir(folder_name)
     return make_response("Success")
 
 if __name__ == "__main__":
