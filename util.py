@@ -22,9 +22,9 @@ def rmdir(f): shutil.rmtree(f)
 
 def rm(f): os.remove(f)
 
-def extract(zf):
+def extract(zf, directory):
     z = ZipFile(zf)
-    z.extractall()
+    z.extractall(directory)
     z.close()
     rm(zf)
 

@@ -1,6 +1,8 @@
-from flask import Flask, request
+from flask import Flask, request, make_response
 from util import *
 from checker import Checker
+
+from os import listdir
 
 app = Flask("java-autograder")
 
@@ -19,12 +21,14 @@ def upload():
     folder_name = path(folder_name)
     mkdir(folder_name)
 
-    file_name = add_ext(folder_name + "/" + file_name, ".zip")
-
-    print("File namee: " + file_name)
-
+    file_name = add_ext(file_name, ".zip")
     submission.save(file_name)
-    extract(file_name)
+
+    print("File name: " + file_name)
+
+    extract(file_name, folder_name)
+
+    print(listdir(folder_name))
 
     print("Initializing checker...")
     checker = Checker(assignment, folder_name)
@@ -33,6 +37,8 @@ def upload():
     print(checker.check())
 
     rmdir(folder_name)
+
+    return make_response("Success")
 
 
 if __name__ == "__main__":
