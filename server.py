@@ -21,7 +21,7 @@ def upload():
 
     file_name = add_ext(folder_name + "/" + file_name, ".zip")
 
-    print("File namee: " file_name)
+    print("File namee: " + file_name)
 
     submission.save(file_name)
 
