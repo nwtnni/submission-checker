@@ -10,7 +10,7 @@ app = Flask("java-autograder")
 def upload():
 
     # Collect data from POST request
-    net_ids = request.form['netids'].split('_')
+    netids = request.form['netids'].split('_')
     folder_name = request.form['group_id']
     file_name = request.form['file_name_0']
     assignment = request.form['assignment_name']
@@ -25,7 +25,14 @@ def upload():
 
     # Check submission
     checker = Checker(assignment, folder_name)
-    print(checker.check())
+    body = checker.check()
+    mailer = Mailer()
+
+    # Temporary
+    netids = ["cn279"]
+
+    for email in [netid + "@cornell.edu" for netid in netids]:
+        mailer.send(email, assignment + " Feedback", body)
 
     # Clean up
     rmdir(folder_name)
