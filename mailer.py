@@ -1,11 +1,12 @@
 import smtplib
+from os import environ
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 
 class Mailer:
 
-    EMAIL = os.environ['EMAIL']
-    PASSWORD = os.environ['PASSWORD']
+    EMAIL = environ['EMAIL']
+    PASSWORD = environ['PASSWORD']
 
     def __init__(self):
         this.server = smtplib.SMTP('smtp.gmail.com', 587)
