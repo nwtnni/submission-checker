@@ -4,8 +4,8 @@ from email.MIMEText import MIMEText
 
 class Mailer:
 
-    EMAIL = "cs2112autograder@gmail.com"
-    PASSWORD = "nice try"
+    EMAIL = os.environ['EMAIL']
+    PASSWORD = os.environ['PASSWORD']
 
     def __init__(self):
         this.server = smtplib.SMTP('smtp.gmail.com', 587)
