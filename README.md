@@ -28,6 +28,6 @@ src/test
 src/test/ExampleTest.java
 ```
 
-Any missing files from this reference, and any extra files, are logged and
+Any missing files or directories--as well as extraneous ones--are logged and
 sent to the student's Cornell netID e-mail. For the purposes of this course,
 extra `.java` files are not logged.
