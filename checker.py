@@ -11,7 +11,7 @@ class Checker:
             self.root = root
             self.log = []
 
-    def check():
+    def check(self):
         _check_sufficient()
         _check_necessary()
         
@@ -21,12 +21,12 @@ class Checker:
             err = reduce(lambda a, b: a + b + "\n", self.log)
             return "Oops! Please fix the following errors and resubmit.\n" + err
 
-    def _check_sufficient():
+    def _check_sufficient(self):
         for req in self.required:
             if not exists(req):
                 self.log.append("Could not find file or directory: " + req) 
 
-    def _check_necessary():
+    def _check_necessary(self):
         for root, dirs, files in walk(self.root):
             for name in files + dirs:
                 name = join(root, name)
