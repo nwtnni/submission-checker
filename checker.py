@@ -29,8 +29,8 @@ class Checker:
                     log.append("Found extra " + which + ": " + name)
 
     def check(self):
-        check_sufficient()
-        check_necessary()
+        self.check_sufficient()
+        self.check_necessary()
         
         if len(self.log) == 0:
             return "Your submission looks good to go!\n"
