@@ -14,7 +14,7 @@ CMS sends a POST request to the server with data for each submission,
 ([documented in the autograder API](http://www.cs.cornell.edu/Projects/cms/userdoc/autograder.html)).
 
 Each assignment with name `<ASSIGNMENT_NAME>` should have a corresponding
-text file `<ASSIGNMENT_NAME>.txt` in the `requirements` directory. This
+text file `<ASSIGNMENT_NAME>.txt` in the `whitelists` directory. This
 file defines a whitelist for directories and files in the student submission.
 Here's an example template:
 

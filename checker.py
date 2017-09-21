@@ -3,7 +3,7 @@ from functools import reduce
 
 class Checker:
 
-    _REQUIRE_DIR = path("requirements")
+    _REQUIRE_DIR = path("whitelists")
 
     def __init__(self, assignment, root):
         with open(join(Checker._REQUIRE_DIR, add_ext(assignment, ".txt")), "r") as f:
