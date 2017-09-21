@@ -36,6 +36,7 @@ def upload():
 
     # Clean up
     rmdir(folder_name)
+    mailer.quit()
     return make_response("Success")
 
 if __name__ == "__main__":
