@@ -7,7 +7,7 @@ class Checker:
 
     def __init__(self, assignment, root):
         with open(join(Checker._REQUIRE_DIR, add_ext(assignment, ".txt")), "r") as f:
-            self.required = [to_path(line, root) for line in f]
+            self.required = [to_path(line, root).strip() for line in f]
 
             for req in self.required:
                 print(req)
