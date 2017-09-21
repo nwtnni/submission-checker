@@ -10,7 +10,8 @@ def upload():
     net_ids = request.form['netids'].split('_')
     folder_name = request.form['group_id']
     file_name = request.form['file_name_0']
-    assignment = request.form['assignment_id']
+    assignment = request.form['assignment_name']
+    print(assignment)
     submission = request.files[file_name] 
     
     # Create temporary directory and save submission
