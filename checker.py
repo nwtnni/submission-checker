@@ -25,7 +25,7 @@ class Checker:
             for name in files + dirs:
                 name = join(root, name)
                 which = "directory" if is_dir(name) else "file"
-                if name not in req:
+                if name not in self.required:
                     log.append("Found extra " + which + ": " + name)
 
     def check(self):
