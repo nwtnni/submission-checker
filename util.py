@@ -28,4 +28,4 @@ def extract(zf):
     z.close()
     rm(zf)
 
-def walk(f): return os.path.walk(f) 
+def walk(f): return os.walk(f) 
