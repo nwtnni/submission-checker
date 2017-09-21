@@ -11,16 +11,6 @@ class Checker:
             self.root = root
             self.log = []
 
-    def check(self):
-        _check_sufficient()
-        _check_necessary()
-        
-        if len(self.log) == 0:
-            return "Your submission looks good to go!\n"
-        else:
-            err = reduce(lambda a, b: a + b + "\n", self.log)
-            return "Oops! Please fix the following errors and resubmit.\n" + err
-
     def _check_sufficient(self):
         for req in self.required:
             if not exists(req):
@@ -33,3 +23,13 @@ class Checker:
                 which = "directory" if is_dir(name) else "file"
                 if name not in req:
                     log.append("Found extra " + which + ": " + name)
+
+    def check(self):
+        _check_sufficient()
+        _check_necessary()
+        
+        if len(self.log) == 0:
+            return "Your submission looks good to go!\n"
+        else:
+            err = reduce(lambda a, b: a + b + "\n", self.log)
+            return "Oops! Please fix the following errors and resubmit.\n" + err
