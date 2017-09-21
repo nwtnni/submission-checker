@@ -17,8 +17,11 @@ def upload():
     folder_name = path(folder_name)
     mkdir(folder_name)
 
-    file_name = folder_name + "/" + file_name + ".zip"
+    file_name = add_ext(folder_name + "/" + file_name, ".zip")
     submission.save(file_name)
+
+    checker = Checker(assignment, folder_name)
+    print(checker.check())
 
     rm(folder_name)
 
