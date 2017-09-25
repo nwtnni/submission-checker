@@ -57,7 +57,7 @@ class Checker:
             res = res + "\nYour submission looks good to go!\n"
         else:
             res = res + "Oops! We may have found some errors (or our submission checker is buggy).\n"
-            res = res "Please check over the log, and resubmit if necessary:\n"
+            res = res + "Please check over the log, and resubmit if necessary:\n"
             res = res + arr_to_str(self.log) + "\n"
             res = res + "For reference, here's the directory structure we're looking for:\n"
             res = res + arr_to_str(self.required)
