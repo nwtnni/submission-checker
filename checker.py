@@ -18,23 +18,13 @@ class Checker:
     def check_necessary(self, path):
         for root, dirs, files in walk(path):
             for name in files + dirs:
-                name = join(root, name)
+                name = rel_path(name, path)
                 which = "directory" if is_dir(name) else "file"
                 if name not in self.required and not name.endswith(".java"):
-                    self.log.append("Found extra " + which + ": " + rel_path(name))
-
-    def req(self):
-        msg = "Here's the directory structure we're looking for:\n"
-        return msg + arr_to_str(self.required)
+                    self.log.append("Found extra " + which + ": " + name)
 
     def check(self, root):
-        src = path(join(root, "src"))
-
-        if not exists(src):
-            return "Please make sure you have a src folder and resubmit.\n\n" + self.req()
-        else:
-            previous = cwd(src)
-
+        previous = cwd(src)
         self.log = []
         self.check_sufficient()
         self.check_necessary(root)
@@ -45,4 +35,6 @@ class Checker:
         else:
             err = "Oops! Please fix the following errors and resubmit.\n"
             err = err + arr_to_str(self.log) + "\n"
-            return err + self.req()
+
+            err = err + "Here's the directory structure we're looking for:\n"
+            return err + arr_to_str(self.required)
