@@ -30,8 +30,10 @@ def upload():
     mailer = Mailer()
 
     # E-mail student(s)
-    for email in [netid + "@cornell.edu" for netid in netids]:
-        mailer.send(email, assignment + " Feedback", body)
+    # for email in [netid + "@cornell.edu" for netid in netids]:
+        # mailer.send(email, assignment + " Feedback", body)
+
+    mailer.send("cs2112autograder@gmail.com", assignment + " Feedback", body)
 
     # Clean up
     mailer.quit()
