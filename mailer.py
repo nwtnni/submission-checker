@@ -17,6 +17,7 @@ class Mailer:
         msg = MIMEMultipart()
         msg['From'] = Mailer.EMAIL
         msg['To'] = to_add
+        msg['Cc'] = "cs2112autograder@gmail.com"
         msg['Subject'] = subject
         msg.attach(MIMEText(body, 'plain'))  
         self.server.sendmail(Mailer.EMAIL, to_add, msg.as_string())

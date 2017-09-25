@@ -11,8 +11,15 @@ class Checker:
             self.log = []
 
     def check_sufficient(self):
-        for req in [line for line in self.required if line[0] != "*"]:
-            if not exists(req):
+        for req in self.required:
+            if req[0] == "*":
+                found = True
+            elif req.endswith(".txt"):
+                found = exists(req) or exists(req[:-4] + ".pdf")
+            else:
+                found = exists(req)
+
+            if not found:
                 self.log.append("Could not find file or directory: " + req) 
 
     def check_necessary(self, path):
@@ -21,7 +28,12 @@ class Checker:
                 which = "directory" if name in dirs else "file"
                 absolute = join(root, name)
                 relative = rel_path(absolute, path)
-                if relative not in self.required and not name.endswith(".java"):
+
+                not_req = relative not in self.required
+                not_java = not name.endswith(".java")
+                not_pdf = not relative[:-4] + ".txt" in self.required
+
+                if not_req and not_java and not_pdf:
                     self.log.append("Found extra " + which + ": " + relative)
 
     def check(self, root):
@@ -34,7 +46,8 @@ class Checker:
         if len(self.log) == 0:
             return "Your submission looks good to go!\n"
         else:
-            err = "Oops! Please fix the following errors and resubmit.\n"
+            err = "Oops! We may have found some errors (or our submission checker is buggy).\n"
+            err = "Please check over the log, and resubmit if necessary:\n"
             err = err + arr_to_str(self.log) + "\n"
 
             err = err + "For reference, here's the directory structure we're looking for:\n"
