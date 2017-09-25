@@ -17,7 +17,7 @@ def add_ext(f, ext): return f + ext
 
 def path(f): return os.path.join(os.getcwd(), f)
 
-def rel_path(f): return os.path.relpath(f)
+def rel_path(f, root): return os.path.relpath(f, root)
 
 def to_path(s, root): return reduce(os.path.join, s.split("/"), root)
 
