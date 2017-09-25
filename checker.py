@@ -23,7 +23,7 @@ class Checker:
                 if name not in self.required and not name.endswith(".java"):
                     self.log.append("Found extra " + which + ": " + rel_path(name))
 
-    def required(self):
+    def req(self):
         msg = "Here's the directory structure we're looking for:\n"
         return msg + arr_to_str(self.required)
 
@@ -31,7 +31,7 @@ class Checker:
         src = path(join(root, "src"))
 
         if not exists(src):
-            return "Please make sure you have a src folder and resubmit.\n\n" + required()
+            return "Please make sure you have a src folder and resubmit.\n\n" + self.req()
         else:
             previous = cwd(src)
 
@@ -45,4 +45,4 @@ class Checker:
         else:
             err = "Oops! Please fix the following errors and resubmit.\n"
             err = err + arr_to_str(self.log) + "\n"
-            return err + required()
+            return err + self.req()
