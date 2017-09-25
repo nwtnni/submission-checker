@@ -30,7 +30,7 @@ class Checker:
     def check(self, root):
         src = path(join(root, "src"))
 
-        if !exists(src):
+        if not exists(src):
             return "Please make sure you have a src folder and resubmit.\n\n" + required()
         else:
             previous = cwd(src)
