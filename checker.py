@@ -56,8 +56,8 @@ class Checker:
         if len(self.log) == 0:
             res = res + "\nYour submission looks good to go!\n"
         else:
-            res = res + "Oops! We may have found some errors (or our submission checker is buggy).\n"
-            res = res + "Please check over the log, and resubmit if necessary:\n"
+            res = res + "Oops! It looks like you have extraneous files. Please remove them and resubmit.\n"
+            res = res + "If you think there's an issue with our script, please respond to this email.\n"
             res = res + arr_to_str(self.log) + "\n"
             res = res + "For reference, here's the directory structure we're looking for:\n"
             res = res + arr_to_str(self.required)
