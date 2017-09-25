@@ -4,7 +4,7 @@ import shutil
 from zipfile import ZipFile
 from functools import reduce
 
-def arr_to_str(arr): return reduce(lambda a, b: "- " + a + "\n" + b, arr) + "\n"
+def arr_to_str(arr): reduce(lambda a, b: a + b, ["- " + s + "\n" for s in arr])
 
 def exists(f): return os.path.exists(f)
 

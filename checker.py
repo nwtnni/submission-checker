@@ -11,7 +11,7 @@ class Checker:
             self.log = []
 
     def check_sufficient(self):
-        for req in self.required:
+        for req in [line for line in self.required if line[0] != "*"] 
             if not exists(req):
                 self.log.append("Could not find file or directory: " + req) 
 
@@ -37,5 +37,5 @@ class Checker:
             err = "Oops! Please fix the following errors and resubmit.\n"
             err = err + arr_to_str(self.log) + "\n"
 
-            err = err + "Here's the directory structure we're looking for:\n"
+            err = err + "For reference, here's the directory structure we're looking for:\n"
             return err + arr_to_str(self.required)
