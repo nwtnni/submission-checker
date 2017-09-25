@@ -9,6 +9,7 @@ class Checker:
         with open(join(Checker._REQUIRE_DIR, add_ext(assignment, ".txt")), "r") as f:
             self.required = [line.strip() for line in f]
             self.log = []
+            self.success = []
 
     def check_sufficient(self):
         for req in self.required:
@@ -19,8 +20,10 @@ class Checker:
             else:
                 found = exists(req)
 
-            if not found:
-                self.log.append("Could not find file or directory: " + req) 
+            if found:
+                self.success.append("Found: " + req)
+            else:
+                self.log.append("Could not find: " + req) 
 
     def check_necessary(self, path):
         for root, dirs, files in walk(path):
@@ -39,16 +42,23 @@ class Checker:
     def check(self, root):
         previous = cwd(root)
         self.log = []
+        self.success = []
         self.check_sufficient()
         self.check_necessary(root)
         cwd(previous)
+
+        if len(self.success > 0):
+            res = "We scanned your submission and found the following required files:\n"
+            res = result + arr_to_str(self.success) + "\n"
+        else:
+            res = ""
         
         if len(self.log) == 0:
-            return "Your submission looks good to go!\n"
+            res = res + "\nYour submission looks good to go!\n"
         else:
-            err = "Oops! We may have found some errors (or our submission checker is buggy).\n"
-            err = "Please check over the log, and resubmit if necessary:\n"
-            err = err + arr_to_str(self.log) + "\n"
-
-            err = err + "For reference, here's the directory structure we're looking for:\n"
-            return err + arr_to_str(self.required)
+            res = res + "Oops! We may have found some errors (or our submission checker is buggy).\n"
+            res = res "Please check over the log, and resubmit if necessary:\n"
+            res = res + arr_to_str(self.log) + "\n"
+            res = res + "For reference, here's the directory structure we're looking for:\n"
+            res = res + arr_to_str(self.required)
+        return res
