@@ -49,7 +49,7 @@ class Checker:
 
         if len(self.success) > 0:
             res = "We scanned your submission and found the following required files:\n"
-            res = result + arr_to_str(self.success) + "\n"
+            res = res + arr_to_str(self.success) + "\n"
         else:
             res = ""
         
