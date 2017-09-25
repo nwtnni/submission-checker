@@ -27,13 +27,14 @@ def upload():
     # Check submission
     checker = Checker(assignment)
     body = checker.check(folder_name)
-    mailer = Mailer()
 
     # E-mail student(s)
-    # for email in [netid + "@cornell.edu" for netid in netids]:
-        # mailer.send(email, assignment + " Feedback", body)
-
-    mailer.send("cs2112autograder@gmail.com", assignment + " Feedback", body)
+    mailer = Mailer()
+    for netid in netids:
+        email = "cs2112autograder@gmail.com"
+        greeting = "Hello " + netid + ",\n\n"
+        closing = "\nCheers,\n2112 TAs"
+        mailer.send(email, assignment + " Feedback", greeting + body + closing)
 
     # Clean up
     mailer.quit()

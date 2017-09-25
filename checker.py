@@ -18,20 +18,14 @@ class Checker:
     def check_necessary(self, path):
         for root, dirs, files in walk(path):
             for name in files + dirs:
-                print("Before relpath: " + name)
-                rel = rel_path(name, path)
-                print("After relpath: " + rel)
                 which = "directory" if name in dirs else "file"
-                if rel not in self.required and not rel.endswith(".java"):
-                    self.log.append("Found extra " + which + ": " + rel)
+                absolute = join(root, name)
+                relative = rel_path(absolute, path)
+                if relative not in self.required and not name.endswith(".java"):
+                    self.log.append("Found extra " + which + ": " + relative)
 
     def check(self, root):
-
-        print("Before: " + pwd())
         previous = cwd(root)
-        print("After: " + pwd())
-        print("Root: " + root)
-
         self.log = []
         self.check_sufficient()
         self.check_necessary(root)
