@@ -3,6 +3,7 @@ perf.txt
 *Or perf.pdf
 written_problems.txt
 *Or written_problems.pdf
+src
 src/modules
 src/modules/AutoCompleteModule.java
 src/modules/ModuleFactory.java
