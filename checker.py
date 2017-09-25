@@ -24,7 +24,7 @@ class Checker:
                     self.log.append("Found extra " + which + ": " + name)
 
     def check(self, root):
-        previous = cwd(src)
+        previous = cwd(root)
         self.log = []
         self.check_sufficient()
         self.check_necessary(root)
