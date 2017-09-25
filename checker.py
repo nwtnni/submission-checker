@@ -47,7 +47,7 @@ class Checker:
         self.check_necessary(root)
         cwd(previous)
 
-        if len(self.success > 0):
+        if len(self.success) > 0:
             res = "We scanned your submission and found the following required files:\n"
             res = result + arr_to_str(self.success) + "\n"
         else:
