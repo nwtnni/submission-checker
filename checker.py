@@ -11,7 +11,7 @@ class Checker:
             self.log = []
 
     def check_sufficient(self):
-        for req in [line for line in self.required if line[0] != "*"] 
+        for req in [line for line in self.required if line[0] != "*"]:
             if not exists(req):
                 self.log.append("Could not find file or directory: " + req) 
 
