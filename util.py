@@ -4,7 +4,14 @@ import shutil
 from zipfile import ZipFile
 from functools import reduce
 
+def arr_to_str(arr): return reduce(lambda a, b: a + "\n" + b, arr) + "\n"
+
 def exists(f): return os.path.exists(f)
+
+def cwd(path): 
+    root = os.getcwd()
+    os.chdir(path)
+    return root
 
 def add_ext(f, ext): return f + ext
 

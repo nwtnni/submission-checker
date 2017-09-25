@@ -25,13 +25,11 @@ def upload():
     extract(file_name, folder_name)
 
     # Check submission
-    checker = Checker(assignment, folder_name)
-    body = checker.check()
+    checker = Checker(assignment)
+    body = checker.check(folder_name)
     mailer = Mailer()
 
-    # Temporary
-    netids = ["cn279"]
-
+    # E-mail student(s)
     for email in [netid + "@cornell.edu" for netid in netids]:
         mailer.send(email, assignment + " Feedback", body)
 

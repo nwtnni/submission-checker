@@ -5,9 +5,9 @@ class Checker:
 
     _REQUIRE_DIR = path("whitelists")
 
-    def __init__(self, assignment, root):
+    def __init__(self, assignment):
         with open(join(Checker._REQUIRE_DIR, add_ext(assignment, ".txt")), "r") as f:
-            self.required = [to_path(line, root).strip() for line in f]
+            self.required = [line.strip() for line in f]
             self.root = root
             self.log = []
 
@@ -24,12 +24,18 @@ class Checker:
                 if name not in self.required and not name.endswith(".java"):
                     self.log.append("Found extra " + which + ": " + name)
 
-    def check(self):
+    def check(self, root):
+        previous = cwd(root)
+        self.log = []
         self.check_sufficient()
         self.check_necessary()
+        cwd(previous)
         
         if len(self.log) == 0:
             return "Your submission looks good to go!\n"
         else:
-            err = reduce(lambda a, b: a + "\n" + b, self.log) + "\n"
-            return "Oops! Please fix the following errors and resubmit.\n" + err
+            err = "Oops! Please fix the following errors and resubmit.\n"
+            err = err + arr_to_str(self.log)
+
+            err = err + "Here's the directory structure we're looking for:\n"
+            return err + arr_to_str(self.required)
