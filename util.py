@@ -13,6 +13,8 @@ def cwd(path):
     os.chdir(path)
     return root
 
+def pwd(): return os.getcwd()
+
 def add_ext(f, ext): return f + ext
 
 def path(f): return os.path.join(os.getcwd(), f)
