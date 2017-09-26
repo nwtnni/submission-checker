@@ -31,8 +31,7 @@ def upload():
     # E-mail student(s)
     mailer = Mailer()
     for netid in netids:
-        # email = netid + "@cornell.edu"
-        email = "cs2112autograder@gmail.com"
+        email = netid + "@cornell.edu"
         greeting = "Hello " + netid + ",\n\n"
         closing = "\nCheers,\n2112 TAs"
         mailer.send(email, assignment + " Feedback", greeting + body + closing)
