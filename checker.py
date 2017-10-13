@@ -33,8 +33,8 @@ class Checker:
 
     def check(self, root):
         previous = cwd(root)
-        success, missing = check_required()
-        extra = check_extra(root)
+        success, missing = self.check_required()
+        extra = self.check_extra(root)
         cwd(previous)
 
         if len(success) > 0:
