@@ -25,7 +25,7 @@ class Checker:
             for name in files:
                 absolute = join(root, name)
                 relative = rel_path(absolute, path)
-                not_req = relative not in self.required + self.optional
+                not_req = relative not in self.required
                 not_def = relative.rpartition(".")[2] not in ALLOWED_BY_DEFAULT
                 if not_req and not_def:
                     extra.append("Found extra file: " + relative)
