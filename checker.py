@@ -9,8 +9,8 @@ class Checker:
 
     def __init__(self, assignment):
         with open(join(Checker._REQUIRE_DIR, add_ext(assignment, ".txt")), "r") as f:
-            self.all = [line.strip().split(" ")[0] for line in f]
-            self.required = [line for line in self.all if line != "" and line[0] != "*"]
+            self.all = [line for line in f]
+            self.required = [line.strip().split()[0] for line in f if line != "" and line[0] != "*"]
 
     def check_required(self):
         success, missing = [], []
