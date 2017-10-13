@@ -1,7 +1,7 @@
 from util import *
 from functools import reduce
 
-ALLOWED_BY_DEFAULT = ["txt", "java", "pdf", "classpath"]
+ALLOWED_BY_DEFAULT = ["txt", "java", "pdf", "classpath", "jpg", "png", "DS_Store", "ctr"]
 
 class Checker:
 
@@ -16,7 +16,7 @@ class Checker:
         success, missing = [], []
         for req in self.required:
             found = exists(req) or (req.endswith(".txt") and exists(req[:-4] + ".pdf"))
-            success.append("Found: " + req) if found else missing.append("Could not find: " + req) 
+            success.append(req) if found else missing.append(req) 
         return (success, missing)
 
     def check_extra(self, path):
@@ -28,7 +28,7 @@ class Checker:
                 not_req = relative not in self.required
                 not_def = relative.rpartition(".")[2] not in ALLOWED_BY_DEFAULT
                 if not_req and not_def:
-                    extra.append("Found extra file: " + relative)
+                    extra.append(relative)
         return extra
 
     def check(self, root):
