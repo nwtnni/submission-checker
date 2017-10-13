@@ -1,8 +1,9 @@
-README.txt
-perf.txt
-*Or perf.pdf
-written_problems.txt
-*Or written_problems.pdf
+** Required Files **
+README.txt or README.pdf
+perf.txt or perf.pdf
+written_problems.txt or written_problems.pdf
+
+** Required Packages and Classes **
 src
 src/modules
 src/modules/AutoCompleteModule.java
@@ -14,6 +15,7 @@ src/util/BloomFilter.java
 src/util/HashTable.java
 src/util/Trie.java
 src/tests
+
+** Optional **
 src/tests/modules
-src/tests/util
 *Any other .java files (e.g. helper classes, JUnit tests)
