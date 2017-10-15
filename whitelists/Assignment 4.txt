@@ -1,0 +1,20 @@
+** Required Packages and Classes **
+src
+src/main
+src/test
+src/main/java
+src/test/java
+
+src/main/java/ast
+src/main/java/ast/Mutation.java
+src/main/java/ast/MutationFactory.java
+src/main/java/ast/Node.java
+src/main/java/ast/Program.java
+
+src/main/java/parse
+src/main/java/parse/Parser.java
+src/main/java/parse/ParserFactory.java
+
+src/main/java/parse/main/ParseAndMutateApp.java
+
+*Any other .java files (e.g. helper classes, JUnit tests)
