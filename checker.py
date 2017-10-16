@@ -16,7 +16,7 @@ class Checker:
         success, missing = [], []
         for req in self.required:
             found = exists(req) or (req.endswith(".txt") and exists(req[:-4] + ".pdf"))
-            print(req + " is " found)
+            print(req + " is " + found)
             success.append(req) if found else missing.append(req) 
 
         # Debug
