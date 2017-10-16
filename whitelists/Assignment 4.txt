@@ -15,6 +15,6 @@ src/main/java/parse
 src/main/java/parse/Parser.java
 src/main/java/parse/ParserFactory.java
 
-src/main/java/parse/main/ParseAndMutateApp.java
+src/main/java/main/ParseAndMutateApp.java
 
 *Any other .java files (e.g. helper classes, JUnit tests)
