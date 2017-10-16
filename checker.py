@@ -10,20 +10,13 @@ class Checker:
     def __init__(self, assignment):
         with open(join(Checker._REQUIRE_DIR, add_ext(assignment, ".txt")), "r") as f:
             self.all = [line.strip() for line in f]
-            self.required = [line.strip().split()[0] for line in f if (line != "" and line[0] != "*")]
+            self.required = [line.split()[0] for line in self.all if (line != "" and line[0] != "*")]
 
     def check_required(self):
         success, missing = [], []
         for req in self.required:
             found = exists(req) or (req.endswith(".txt") and exists(req[:-4] + ".pdf"))
-            print(req + " is " + found)
             success.append(req) if found else missing.append(req) 
-
-        # Debug
-        for s in success:
-            print(s)
-        for m in missing:
-            print(m)
         return (success, missing)
 
     def check_extra(self, path):
